@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Credit Card Fraud Detector 🔍</title>
+    <style>
+        body {
+            background: #f1f1f1;
+            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
+        }
+        h2 {
+            margin-top: 40px;
+            font-size: 28px;
+        }
+        form {
+            margin-top: 30px;
+            display: inline-block;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        input {
+            display: block;
+            margin: 10px auto;
+            padding: 10px;
+            width: 250px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 25px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h2>Credit Card Fraud Detection 🔍</h2>
+    <form method="POST" action="/predict">
+        {% for i in range(1, 11) %}
+            <input type="text" name="V{{ i }}" placeholder="V{{ i }}" required>
+        {% endfor %}
+        <input type="text" name="amount" placeholder="Amount" required>
+        <input type="text" name="time" placeholder="Time" required>
+        <button type="submit">Predict Transaction</button>
+    </form>
+    {% if prediction_text %}
+        <div class="result">{{ prediction_text }}</div>
+    {% endif %}
+</body>
+</html>
